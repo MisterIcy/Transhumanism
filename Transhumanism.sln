@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transhumanism", "Transhumanism\Transhumanism.csproj", "{6D4F85F4-B952-4C3F-899C-9CE971B3D897}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranshumanismTests", "TranshumanismTests\TranshumanismTests.csproj", "{FF53E859-19B7-4AB8-99B0-4BCC97658FBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{6D4F85F4-B952-4C3F-899C-9CE971B3D897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D4F85F4-B952-4C3F-899C-9CE971B3D897}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D4F85F4-B952-4C3F-899C-9CE971B3D897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF53E859-19B7-4AB8-99B0-4BCC97658FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF53E859-19B7-4AB8-99B0-4BCC97658FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF53E859-19B7-4AB8-99B0-4BCC97658FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF53E859-19B7-4AB8-99B0-4BCC97658FBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

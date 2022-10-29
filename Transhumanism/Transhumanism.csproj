@@ -9,4 +9,8 @@
         <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx.12-arm64</RuntimeIdentifiers>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="SDLTooSharp" Version="0.2.0" />
+    </ItemGroup>
+
 </Project>
