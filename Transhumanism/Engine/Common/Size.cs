@@ -28,7 +28,7 @@ public class Size : IEquatable<Size>
                 throw new ArgumentOutOfRangeException(nameof(value), "Height must be greater than or equal to zero");
             }
 
-            _width = value;
+            _height = value;
         }
     }
 
