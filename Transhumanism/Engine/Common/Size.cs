@@ -19,7 +19,7 @@ public class Size : IEquatable<Size>
 
     private int _height;
 
-    public int Heigth
+    public int Height
     {
         get => _height;
         set {
@@ -35,7 +35,7 @@ public class Size : IEquatable<Size>
     public Size(int width, int height)
     {
         Width = width;
-        Heigth = height;
+        Height = height;
     }
 
     public Size(int value) : this(value, value)
@@ -47,7 +47,7 @@ public class Size : IEquatable<Size>
 
     }
 
-    public bool Empty => Width == 0 || Heigth == 0;
+    public bool Empty => Width == 0 || Height == 0;
 
 
     public bool Equals(Size? other)
