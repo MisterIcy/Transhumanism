@@ -1,4 +1,4 @@
-﻿namespace Transhumanism.Exceptions.Video.Display;
+namespace Transhumanism.Exceptions.Video.Display;
 
 public sealed class UnableToGetDPIException : DisplayException
 {

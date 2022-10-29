@@ -1,4 +1,4 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+using SDLTooSharp.Bindings.SDL2;
 
 namespace Transhumanism.Engine.Video;
 
@@ -15,9 +15,9 @@ public class Window
         uint flags = (uint)SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN
     )
     {
-        if (x is null)
+        if ( x is null )
         {
-            
+
         }
     }
 }

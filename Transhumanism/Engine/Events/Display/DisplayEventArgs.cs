@@ -1,4 +1,4 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Exceptions.Events.Display;
 
 namespace Transhumanism.Engine.Events.Display;
@@ -18,8 +18,7 @@ public abstract class DisplayEventArgs : CommonEventArgs
 
     public DisplayEventArgs Factory(SDL.SDL_Event ev)
     {
-        return ev.Display.Type switch
-        {
+        return ev.Display.Type switch {
             (uint)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_CONNECTED => new DisplayConnectedEventArgs(ev),
             (uint)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_DISCONNECTED => new DisplayDisconnetedEventArgs(ev),
             (uint)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_ORIENTATION => new DisplayOrientationChangedEventArgs(ev),

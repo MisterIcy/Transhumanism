@@ -1,4 +1,4 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Exceptions.Video.Display;
 
 namespace Transhumanism.Engine.Video;
@@ -29,7 +29,7 @@ public struct DPI
     public DPI(int displayId)
     {
         var result = SDL.SDL_GetDisplayDPI(displayId, out Diagonal, out Horizontal, out Vertical);
-        if (result != 0)
+        if ( result != 0 )
         {
             throw new UnableToGetDPIException(displayId);
         }

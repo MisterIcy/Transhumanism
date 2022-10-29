@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace Transhumanism;
 
@@ -16,12 +16,12 @@ public static class Version
         stringBuilder.Append($"{MAJOR}.{MINOR}.{REVISION}");
 
 #if DEBUG
-        if (!string.IsNullOrEmpty(PRERELEASE))
+        if ( !string.IsNullOrEmpty(PRERELEASE) )
         {
             stringBuilder.Append($"-{PRERELEASE}");
         }
 
-        if (!string.IsNullOrEmpty(BUILD))
+        if ( !string.IsNullOrEmpty(BUILD) )
         {
             stringBuilder.Append($"+{BUILD}");
         }

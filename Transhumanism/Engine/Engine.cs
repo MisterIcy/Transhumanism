@@ -1,6 +1,6 @@
-﻿namespace Transhumanism.Engine;
+namespace Transhumanism.Engine;
 
 public class Engine
 {
-    
+
 }

@@ -1,4 +1,4 @@
-﻿namespace Transhumanism.Engine.Logger;
+namespace Transhumanism.Engine.Logger;
 
 public enum Level
 {

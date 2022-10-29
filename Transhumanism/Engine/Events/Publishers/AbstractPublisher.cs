@@ -1,10 +1,10 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Engine.Events.Subscribers;
 
 namespace Transhumanism.Engine.Events.Publishers;
 
-public abstract class AbstractPublisher: IPublisher
+public abstract class AbstractPublisher : IPublisher
 {
     protected List<ISubscriber> Subscribers { get; }
 
@@ -15,7 +15,7 @@ public abstract class AbstractPublisher: IPublisher
 
     public IPublisher AddSubscriber(ISubscriber subscriber)
     {
-        if (!Subscribers.Contains(subscriber))
+        if ( !Subscribers.Contains(subscriber) )
         {
             Subscribers.Add(subscriber);
         }
@@ -25,7 +25,7 @@ public abstract class AbstractPublisher: IPublisher
 
     public IPublisher RemoveSubscriber(ISubscriber subscriber)
     {
-        if (Subscribers.Contains(subscriber))
+        if ( Subscribers.Contains(subscriber) )
         {
             Subscribers.Remove(subscriber);
         }
@@ -35,7 +35,7 @@ public abstract class AbstractPublisher: IPublisher
 
     public void NotifySubscribers(SDL.SDL_Event ev)
     {
-        foreach (var subscriber in Subscribers)
+        foreach ( var subscriber in Subscribers )
         {
             subscriber.Update(ev);
         }

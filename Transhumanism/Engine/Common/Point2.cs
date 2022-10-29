@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using SDLTooSharp.Bindings.SDL2;
 
 namespace Transhumanism.Engine.Common;
@@ -24,16 +24,21 @@ public class Point2 : IEquatable<Point2>
 
     public bool Equals(Point2? other)
     {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
+        if ( ReferenceEquals(null, other) )
+            return false;
+        if ( ReferenceEquals(this, other) )
+            return true;
         return X == other.X && Y == other.Y;
     }
 
     public override bool Equals(object? obj)
     {
-        if (ReferenceEquals(null, obj)) return false;
-        if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != this.GetType()) return false;
+        if ( ReferenceEquals(null, obj) )
+            return false;
+        if ( ReferenceEquals(this, obj) )
+            return true;
+        if ( obj.GetType() != this.GetType() )
+            return false;
         return Equals((Point2)obj);
     }
 

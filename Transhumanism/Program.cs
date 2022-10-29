@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 
 using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Engine.Events.Publishers;
@@ -16,22 +16,21 @@ var di1 = new Display(0);
 var logger = new Logger();
 
 logger.Trace(di1.Name, Category.Video);
-di1.OrientationChanged += (sender, eventArgs) =>
-{
+di1.OrientationChanged += (sender, eventArgs) => {
     string msg = $"Orientation changed for {di1.Name}: {(DisplayOrientation)eventArgs.Data}";
     logger.Trace(msg, Category.Video);
     Console.WriteLine(msg);
 };
 var windowPtr = SDL.SDL_CreateWindow("Transhumanism", (
-    0), 0, 800, 600, (uint)SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
+    0 ), 0, 800, 600, (uint)SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 var renderPtr = SDL.SDL_CreateRenderer(windowPtr, -1, (uint)SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED);
-while (running)
+while ( running )
 {
     SDL.SDL_Event ev = default;
-    while (SDL.SDL_PollEvent(out ev) != 0)
+    while ( SDL.SDL_PollEvent(out ev) != 0 )
     {
         EventPublisher.GetInstance().AddEvent(ev);
-        if (ev.Type == (uint)SDL.SDL_EventType.SDL_QUIT)
+        if ( ev.Type == (uint)SDL.SDL_EventType.SDL_QUIT )
         {
             running = false;
         }
@@ -39,7 +38,7 @@ while (running)
 
     SDL.SDL_SetRenderDrawColor(renderPtr, 0, 0, 0, 255);
     SDL.SDL_RenderClear(renderPtr);
-    
+
     SDL.SDL_RenderPresent(renderPtr);
 }
 logger.Close();

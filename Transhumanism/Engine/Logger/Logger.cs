@@ -1,4 +1,4 @@
-﻿namespace Transhumanism.Engine.Logger;
+namespace Transhumanism.Engine.Logger;
 
 public class Logger
 {
@@ -85,6 +85,6 @@ public class Logger
     {
         Writer.EndSection();
     }
-    
-    
+
+
 }

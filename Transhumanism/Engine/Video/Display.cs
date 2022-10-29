@@ -1,4 +1,3 @@
-﻿using System.Drawing;
 using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Engine.Common;
 using Transhumanism.Engine.Events.Display;
@@ -29,10 +28,9 @@ public class Display : ISubscriber
     /// <exception cref="UnableToGetCurrentDisplayModeException">Thrown if we cannot get the current display mode</exception>
     public DisplayMode CurrentMode
     {
-        get
-        {
+        get {
             int result = SDL.SDL_GetCurrentDisplayMode(DisplayId, out var mode);
-            if (result != 0)
+            if ( result != 0 )
             {
                 throw new UnableToGetCurrentDisplayModeException(DisplayId);
             }
@@ -47,10 +45,9 @@ public class Display : ISubscriber
     /// <exception cref="UnableToGetDesktopDisplayModeException">Thrown if we cannot get the desktop display mode</exception>
     public DisplayMode DesktopMode
     {
-        get
-        {
+        get {
             int result = SDL.SDL_GetDesktopDisplayMode(DisplayId, out var mode);
-            if (result != 0)
+            if ( result != 0 )
             {
                 throw new UnableToGetDesktopDisplayModeException(DisplayId);
             }
@@ -65,10 +62,9 @@ public class Display : ISubscriber
     /// <exception cref="UnableToGetNumberOfDisplayModesException">Thrown if we cannot get the number of display modes</exception>
     public int NumDisplayModes
     {
-        get
-        {
+        get {
             int result = SDL.SDL_GetNumDisplayModes(DisplayId);
-            if (result < 1)
+            if ( result < 1 )
             {
                 throw new UnableToGetNumberOfDisplayModesException(DisplayId);
             }
@@ -84,15 +80,14 @@ public class Display : ISubscriber
     /// <exception cref="UnableToGetNumberOfDisplayModesException">Throw if we cannot get the number of display modes</exception>
     public List<DisplayMode> DisplayModes
     {
-        get
-        {
+        get {
             int numDispModes = NumDisplayModes;
             List<DisplayMode> modes = new List<DisplayMode>(numDispModes);
 
-            for (int i = 0; i < numDispModes; i++)
+            for ( int i = 0; i < numDispModes; i++ )
             {
                 int result = SDL.SDL_GetDisplayMode(DisplayId, i, out var mode);
-                if (result != 0)
+                if ( result != 0 )
                 {
                     throw new UnableToGetDisplayModeException(DisplayId, i);
                 }
@@ -115,10 +110,9 @@ public class Display : ISubscriber
     /// <exception cref="NoDisplaysFoundException">Thrown in no displays were found</exception>
     public static int NumDisplays
     {
-        get
-        {
+        get {
             int result = SDL.SDL_GetNumVideoDisplays();
-            if (result < 0)
+            if ( result < 0 )
             {
                 throw new NoDisplaysFoundException();
             }
@@ -160,7 +154,7 @@ public class Display : ISubscriber
     public static Display GetDisplayOnPoint(Point2 point)
     {
         int result = SDL.SDL_GetPointDisplayIndex((SDL.SDL_Point)point);
-        if (result < 0)
+        if ( result < 0 )
         {
             throw new NoDisplayForPointException(point);
         }
@@ -170,12 +164,12 @@ public class Display : ISubscriber
 
     public void Update(SDL.SDL_Event ev)
     {
-        if (ev.Type != (uint)SDL.SDL_EventType.SDL_DISPLAYEVENT || ev.Display.Display != (uint)DisplayId)
+        if ( ev.Type != (uint)SDL.SDL_EventType.SDL_DISPLAYEVENT || ev.Display.Display != (uint)DisplayId )
         {
             return;
         }
 
-        switch (ev.Display.Event)
+        switch ( ev.Display.Event )
         {
             case (byte)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_CONNECTED:
                 OnConnected(new DisplayConnectedEventArgs(ev));

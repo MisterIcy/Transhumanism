@@ -1,6 +1,6 @@
-﻿namespace Transhumanism.Engine.Events.Publishers;
+namespace Transhumanism.Engine.Events.Publishers;
 
-public sealed class DisplayPublisher: AbstractPublisher 
+public sealed class DisplayPublisher : AbstractPublisher
 {
-    
+
 }

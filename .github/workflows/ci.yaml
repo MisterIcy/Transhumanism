@@ -35,6 +35,9 @@ jobs:
       
       - name: "Install Dependencies"
         run: dotnet restore
+      
+      - name: "Verify Coding Standards"
+        run: dotnet format --verify-no-changes
         
       - name: "Build"
         run: dotnet build --configuration Release --no-restore

@@ -1,4 +1,4 @@
-﻿using Transhumanism.Engine.Common;
+using Transhumanism.Engine.Common;
 
 namespace Transhumanism.Exceptions.Video.Display;
 

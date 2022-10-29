@@ -1,4 +1,4 @@
-﻿namespace Transhumanism.Engine.Logger;
+namespace Transhumanism.Engine.Logger;
 
 public enum Category
 {
@@ -7,6 +7,6 @@ public enum Category
     Audio = 2,
     Events = 3,
     Controls = 4,
-    
+
     Engine = 10,
 }

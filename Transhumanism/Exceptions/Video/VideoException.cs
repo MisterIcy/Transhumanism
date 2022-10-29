@@ -1,4 +1,4 @@
-﻿namespace Transhumanism.Exceptions.Video;
+namespace Transhumanism.Exceptions.Video;
 
 public abstract class VideoException : EngineException
 {

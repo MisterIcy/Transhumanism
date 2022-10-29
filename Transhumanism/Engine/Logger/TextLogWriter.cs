@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace Transhumanism.Engine.Logger;
 
@@ -18,13 +18,12 @@ public sealed class TextLogWriter : ILogWriter
         LastWritten = DateTime.Now;
         _entries = new Queue<LogEntry>();
 
-        if (File.Exists(logFile))
+        if ( File.Exists(logFile) )
         {
             File.Delete(logFile);
         }
 
-        var fsOpts = new FileStreamOptions
-        {
+        var fsOpts = new FileStreamOptions {
             Access = FileAccess.Write,
             Mode = FileMode.Create,
             Options = FileOptions.SequentialScan,
@@ -42,8 +41,8 @@ public sealed class TextLogWriter : ILogWriter
     public void Write(LogEntry entry)
     {
         _entries.Enqueue(entry);
-        
-        if (_entries.Count > 100 || (DateTime.Now - LastWritten).TotalSeconds > 60.0)
+
+        if ( _entries.Count > 100 || ( DateTime.Now - LastWritten ).TotalSeconds > 60.0 )
         {
             WriteInternal();
         }
@@ -51,21 +50,21 @@ public sealed class TextLogWriter : ILogWriter
 
     public void WriteInternal()
     {
-        if (_entries.Count == 0)
+        if ( _entries.Count == 0 )
         {
             return;
         }
 
-        while (_entries.Count > 0)
+        while ( _entries.Count > 0 )
         {
             var entry = _entries.Dequeue();
 
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append($"[{(entry.Timestamp - Started):G}] ")
+            stringBuilder.Append($"[{( entry.Timestamp - Started ):G}] ")
                          .Append($"[{entry.Level.ToString().ToUpper()} / {entry.Category}] ")
                          .Append($" - {entry.Message}");
 
-            if (entry.Exception != null)
+            if ( entry.Exception != null )
             {
                 stringBuilder.Append(Environment.NewLine)
                              .Append(entry.Exception.StackTrace)
@@ -80,7 +79,7 @@ public sealed class TextLogWriter : ILogWriter
 
     public void StartSection(string name)
     {
-        if (!string.IsNullOrEmpty(SectionName))
+        if ( !string.IsNullOrEmpty(SectionName) )
         {
             EndSection();
         }
@@ -93,7 +92,7 @@ public sealed class TextLogWriter : ILogWriter
 
     public void EndSection()
     {
-        if (string.IsNullOrEmpty(SectionName))
+        if ( string.IsNullOrEmpty(SectionName) )
         {
             return;
         }
@@ -108,14 +107,14 @@ public sealed class TextLogWriter : ILogWriter
     {
         bool isOdd = false;
         int sectionLen = section.Length + 2;
-        if (sectionLen % 2 == 1)
+        if ( sectionLen % 2 == 1 )
         {
             sectionLen++;
             isOdd = true;
         }
 
-        left = (int)Math.Floor((decimal)((120 - sectionLen) / 2));
-        right = left + ((isOdd) ? 1 : 0);
+        left = (int)Math.Floor((decimal)( ( 120 - sectionLen ) / 2 ));
+        right = left + ( ( isOdd ) ? 1 : 0 );
     }
 
     public void Flush()

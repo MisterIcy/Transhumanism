@@ -1,4 +1,4 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Engine.Events.Subscribers;
 
 namespace Transhumanism.Engine.Events.Publishers;

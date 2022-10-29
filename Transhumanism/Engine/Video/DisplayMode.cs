@@ -1,4 +1,4 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+using SDLTooSharp.Bindings.SDL2;
 
 namespace Transhumanism.Engine.Video;
 
@@ -8,9 +8,9 @@ public class DisplayMode
     public int Height { get; }
     public int RefreshRate { get; }
     public IntPtr DriverData { get; }
-    
+
     public PixelFormat Format { get; }
-    
+
     public DisplayMode(SDL.SDL_DisplayMode mode)
     {
         Width = mode.W;

@@ -1,4 +1,4 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+using SDLTooSharp.Bindings.SDL2;
 using Transhumanism.Engine.Events.Subscribers;
 
 namespace Transhumanism.Engine.Events.Publishers;
@@ -11,9 +11,9 @@ public class EventPublisher
     {
         return _instance ??= new EventPublisher();
     }
-    
+
     public DisplayPublisher DisplayPublisher { get; }
-    
+
     public EventPublisher()
     {
         DisplayPublisher = new DisplayPublisher();
@@ -21,7 +21,7 @@ public class EventPublisher
 
     public void Subscribe(ISubscriber subscriber)
     {
-        if (subscriber is Video.Display)
+        if ( subscriber is Video.Display )
         {
             DisplayPublisher.AddSubscriber(subscriber);
         }
@@ -29,7 +29,7 @@ public class EventPublisher
 
     public void Unsubscribe(ISubscriber subscriber)
     {
-        if (subscriber is Video.Display)
+        if ( subscriber is Video.Display )
         {
             DisplayPublisher.RemoveSubscriber(subscriber);
         }
@@ -37,7 +37,7 @@ public class EventPublisher
 
     public void AddEvent(SDL.SDL_Event ev)
     {
-        switch (ev.Type)
+        switch ( ev.Type )
         {
             case (uint)SDL.SDL_EventType.SDL_DISPLAYEVENT:
                 DisplayPublisher.NotifySubscribers(ev);
