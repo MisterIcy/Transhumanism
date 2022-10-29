@@ -182,4 +182,30 @@ public class Display : ISubscriber
                 break;
         }
     }
+
+    public Rectangle Bounds
+    {
+        get {
+            int result = SDL.SDL_GetDisplayBounds(DisplayId, out var rect);
+            if ( result != 0 )
+            {
+                throw new UnableToGetBoundsException(DisplayId);
+            }
+
+            return (Rectangle)rect;
+        }
+    }
+
+    public Rectangle UsableBounds
+    {
+        get {
+            int result = SDL.SDL_GetDisplayUsableBounds(DisplayId, out var rect);
+            if ( result != 0 )
+            {
+                throw new UnableToGetUsableBoundsException(DisplayId);
+            }
+
+            return (Rectangle)rect;
+        }
+    }
 }
