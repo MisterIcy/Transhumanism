@@ -5,7 +5,8 @@ using Transhumanism.Engine.Events.Publishers;
 using Transhumanism.Engine.Logger;
 using Transhumanism.Engine.Video;
 using Version = Transhumanism.Version;
-Console.WriteLine($"Transhumanism ({Version.GetVersion()})\t Copyright 2022 Alexandros Koutroulis {Environment.NewLine}");
+Console.WriteLine(
+    $"Transhumanism ({Version.GetVersion()})\t Copyright 2022 Alexandros Koutroulis {Environment.NewLine}");
 Console.WriteLine("This program comes with ABSOLUTELY NO WARRANTY! This is free software, and you are welcome");
 Console.WriteLine("to redistribute it under certain conditions; see the included LICENSE file");
 
@@ -21,8 +22,7 @@ di1.OrientationChanged += (sender, eventArgs) => {
     logger.Trace(msg, Category.Video);
     Console.WriteLine(msg);
 };
-var windowPtr = SDL.SDL_CreateWindow("Transhumanism", (
-    0 ), 0, 800, 600, (uint)SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
+var windowPtr = SDL.SDL_CreateWindow("Transhumanism", 0, 0, 800, 600, (uint)SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 var renderPtr = SDL.SDL_CreateRenderer(windowPtr, -1, (uint)SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED);
 while ( running )
 {
@@ -41,6 +41,7 @@ while ( running )
 
     SDL.SDL_RenderPresent(renderPtr);
 }
+
 logger.Close();
 
 SDL.SDL_DestroyRenderer(renderPtr);
