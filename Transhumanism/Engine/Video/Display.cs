@@ -1,10 +1,14 @@
-﻿using SDLTooSharp.Bindings.SDL2;
+﻿using System.Drawing;
+using SDLTooSharp.Bindings.SDL2;
+using Transhumanism.Engine.Common;
 using Transhumanism.Engine.Events.Display;
+using Transhumanism.Engine.Events.Publishers;
+using Transhumanism.Engine.Events.Subscribers;
 using Transhumanism.Exceptions.Video.Display;
 
 namespace Transhumanism.Engine.Video;
 
-public class Display
+public class Display : ISubscriber
 {
     public int DisplayId { get; }
 
@@ -126,11 +130,17 @@ public class Display
     public Display(int displayId)
     {
         DisplayId = displayId;
+        EventPublisher.GetInstance().Subscribe(this);
     }
 
-    public event EventHandler<DisplayConnectedEventArgs> Connected;
-    public event EventHandler<DisplayDisconnetedEventArgs> Disconnected;
-    public event EventHandler<DisplayOrientationChangedEventArgs> OrientationChanged;
+    ~Display()
+    {
+        EventPublisher.GetInstance().Unsubscribe(this);
+    }
+
+    public event EventHandler<DisplayConnectedEventArgs>? Connected;
+    public event EventHandler<DisplayDisconnetedEventArgs>? Disconnected;
+    public event EventHandler<DisplayOrientationChangedEventArgs>? OrientationChanged;
 
     protected virtual void OnConnected(DisplayConnectedEventArgs args)
     {
@@ -147,14 +157,35 @@ public class Display
         OrientationChanged?.Invoke(this, args);
     }
 
-    public static Display GetDisplayOnPoint(SDL.SDL_Point point)
+    public static Display GetDisplayOnPoint(Point2 point)
     {
-        int result = SDL.SDL_GetPointDisplayIndex(point);
+        int result = SDL.SDL_GetPointDisplayIndex((SDL.SDL_Point)point);
         if (result < 0)
         {
             throw new NoDisplayForPointException(point);
         }
 
         return new Display(result);
+    }
+
+    public void Update(SDL.SDL_Event ev)
+    {
+        if (ev.Type != (uint)SDL.SDL_EventType.SDL_DISPLAYEVENT || ev.Display.Display != (uint)DisplayId)
+        {
+            return;
+        }
+
+        switch (ev.Display.Event)
+        {
+            case (byte)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_CONNECTED:
+                OnConnected(new DisplayConnectedEventArgs(ev));
+                break;
+            case (byte)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_DISCONNECTED:
+                OnDisconnected(new DisplayDisconnetedEventArgs(ev));
+                break;
+            case (byte)SDL.SDL_DisplayEventID.SDL_DISPLAYEVENT_ORIENTATION:
+                OnOrientationChnged(new DisplayOrientationChangedEventArgs(ev));
+                break;
+        }
     }
 }
