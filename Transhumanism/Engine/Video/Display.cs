@@ -108,7 +108,7 @@ public class Display : ISubscriber
     /// Gets the number of displays which are attached to the system
     /// </summary>
     /// <exception cref="NoDisplaysFoundException">Thrown in no displays were found</exception>
-    public static int NumDisplays
+    public static int Count
     {
         get {
             int result = SDL.SDL_GetNumVideoDisplays();

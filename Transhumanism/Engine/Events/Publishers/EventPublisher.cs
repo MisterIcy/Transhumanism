@@ -13,25 +13,40 @@ public class EventPublisher
     }
 
     public DisplayPublisher DisplayPublisher { get; }
+    public WindowPublisher WindowPublisher { get; }
 
     public EventPublisher()
     {
         DisplayPublisher = new DisplayPublisher();
+        WindowPublisher = new WindowPublisher();
     }
 
     public void Subscribe(ISubscriber subscriber)
     {
-        if ( subscriber is Video.Display )
+
+        switch ( subscriber )
         {
-            DisplayPublisher.AddSubscriber(subscriber);
+            case Video.Display:
+                DisplayPublisher.AddSubscriber(subscriber);
+                break;
+            case Video.Window:
+                WindowPublisher.AddSubscriber(subscriber);
+                break;
         }
+
+
     }
 
     public void Unsubscribe(ISubscriber subscriber)
     {
-        if ( subscriber is Video.Display )
+        switch ( subscriber )
         {
-            DisplayPublisher.RemoveSubscriber(subscriber);
+            case Video.Display:
+                DisplayPublisher.RemoveSubscriber(subscriber);
+                break;
+            case Video.Window:
+                WindowPublisher.RemoveSubscriber(subscriber);
+                break;
         }
     }
 
@@ -41,6 +56,9 @@ public class EventPublisher
         {
             case (uint)SDL.SDL_EventType.SDL_DISPLAYEVENT:
                 DisplayPublisher.NotifySubscribers(ev);
+                break;
+            case (uint)SDL.SDL_EventType.SDL_WINDOWEVENT:
+                WindowPublisher.NotifySubscribers(ev);
                 break;
         }
     }
